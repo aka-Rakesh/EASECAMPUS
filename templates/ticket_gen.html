@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.932);
+            color: #932A2A;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px; /* Add margin to separate logo and text */
+        }
+
+        .easecase-text {
+            font-size: 35px;
+            font-weight: bold;
+            color: #932A2A;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .vertical-div {
+            width: 200px;
+            background-color: #932A2A;
+            padding: 20px;
+        }
+
+        /* Added styles for left-corner div buttons */
+        .vertical-div button {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 100%;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Circular image */
+        .circular-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Added styles for the horizontal line */
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        /* Added styles for the container-div */
+        .container-div {
+            width: 82.3%;
+            background-color: #D3D9D9;
+            padding: 15px;
+            border-radius: 0px;
+            margin-top: 0px;
+            position:relative;
+        }
+
+        /* Added styles for the links inside container-div */
+       
+
+        .container-div a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* Added styles for the buttons */
+        .container-div button {
+            float: inline-start;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Added styles for the sections */
+        .section {
+            width: 250px;
+            height: 150px;
+            background-color: #ffffff;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 5px;
+            border:outset;
+        }
+
+        
+        .Bigsection{
+            display:ruby;
+        }
+
+        .font{
+            font-weight: 800;
+            font-size: 25px;
+            margin-bottom: 40px
+        }
+
+        .regFont{
+            font-weight: 800;
+            font-size: 22px;
+            margin-bottom: 40px
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .vertical-div, .middle-div, .right-corner-div {
+                width: 100%;
+            }
+            .vertical-div {
+                padding: 10px;
+            }
+            .search-bar {
+                margin-left: 10px;
+            }
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo-container">
+            <img src="/static/img/final_logo.png" alt="College Logo" class="logo">
+            <span class="easecase-text">EASECAMPUS</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="vertical-div">
+            <center>
+                <div class="circular-image">
+                    <img src={{ user['picture_path'] }} alt="Student Image">
+                </div>
+                <p>{{ user['name'] }}</p>
+                <p>{{ user['enrollment_no'] }}</p>
+                <p>{{ user['school'] }}</p>
+            </center>
+            <button height="45px" onclick="window.location.href='home'">Home</button>
+            <button height="45px" onclick="window.location.href='profile'">Profile</button>
+            <button height="45px" onclick="window.location.href='course_reg'">Course Registration</a></button>
+            <button height="45px" onclick="window.location.href='feedback'">Feedback</a></button>
+            <button height="45px" onclick="window.location.href='#'">Examination</a></button>
+            <button height="45px" onclick="window.location.href='calendar'">Calendar</a></button>
+            <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</a></button>
+            <button height="45px" onclick="window.location.href='#'">Hostel</a></button>
+            <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
+        </div>
+        <div class="container-div">
+            <div>
+                <h1>TICKET GENERATOR</h1>
+                <div class="Bigsection">
+                    <div class="section">
+                        <p class="font">Lost and Found</p>
+                        <button> <a href="lost_found">Register</a></button>
+                    </div>
+                    <!-- Hostel Clearance Section -->
+                    <div class="section">
+                        <p class="font">Hostel Clearance</p>
+                        <button> <a href="HostelClearance.html">Register</a></button>
+                    </div>
+                    <!-- Hostel Services Section -->
+                    <div class="section">
+                        <p class="font">Hostel Services</p>
+                        <button> <a href="HostelServices.html">Generate Ticket</a></button>
+                    </div>
+                    <!-- Out Pass Section -->
+                    <div class="section">
+                        <p class="font">Out Pass</p>
+                        <button> <a href="Outpass.html">Create Outpass</a></button>
+                    </div>
+                    <!-- IT Helpdesk Section -->
+                    <div class="section">
+                        <p class="font">IT Helpdesk</p>
+                        <button> <a href="Helpdesk.html">Generate Ticket</a></button>
+                    </div>
+                    <!-- Register Complaint Section -->
+                    <div class="section">
+                        <p class="regFont">Register Complaints</p>
+                        <button> <a href="Register.html">Register</a></button>
+                    </div>
+                </div>
+                <!-- Lost and Found Section -->
+                
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>

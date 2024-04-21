@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.932);
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px; /* Add margin to separate logo and text */
+        }
+
+        .easecase-text {
+            font-size: 35px;
+            font-weight: bold;
+            color: #932A2A;
+        }
+
+        .search-bar {
+            flex-grow: 0;
+            margin-left: 20px;
+            width: 250px; /* Increased width of the search bar */
+        }
+
+        .vertical-div {
+            width: 200px;
+           
+            padding: 8px;
+            background-color: #932A2A;
+
+        }
+
+        .middle-div {
+            margin: 20px;
+            padding: 20px;
+            
+            flex-grow: 1;
+            background-color:#D3D9D9 ;
+        }
+
+        .right-corner-div {
+            width: 200px;
+            background-color: #932A2A;
+            padding: 20px;
+        }
+
+        .query-box {
+            width: 97%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            height: 300px;
+        }
+
+        /* Added styles for right-corner div items */
+        .right-corner-div a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 5px;
+            margin-bottom: 15px;
+            border-radius: 2px;
+            background-color: #fff;
+            width: 200px;
+            text-align: center;
+        }
+
+        /* Added styles for left-corner div buttons */
+        .vertical-div button {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 100%;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Added styles for silenty and public */
+        .silently, .public {
+            display: inline-block;
+            margin-right: 10px;
+            background-color: #ccc;
+            cursor: pointer;
+            margin-bottom: 10px; /* Added margin bottom */
+            border-radius: 5px; /* Added border radius */
+            padding: 8px 12px; /* Added padding */
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Added styles for course query */
+        .course-query {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc; /* Added border bottom */
+            padding-bottom: 20px; /* Added padding bottom */
+            height: 200px;
+        }
+
+        /* Added styles for the type box */
+        .type-box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            height: auto;
+        }
+
+        /* Circular image */
+        .circular-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Added styles for the horizontal line */
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .vertical-div, .middle-div, .right-corner-div {
+                width: 100%;
+            }
+            .vertical-div {
+                padding: 10px;
+            }
+            .search-bar {
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <img src="/static/img/final_logo.png" alt="College Logo" class="logo">
+            <span class="easecase-text">EASECAMPUS</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+    </div>
+
+    <div class="container" style="display: flex;">
+
+        <div class="vertical-div">
+            <center>
+                <div class="circular-image">
+                    <img src={{ user['picture_path'] }} alt="Student Image">
+                </div>
+                <p>{{ user['name'] }}</p>
+                <p>{{ user['enrollment_no'] }}</p>
+                <p>{{ user['school'] }}</p>
+            </center>
+            <button height="45px" onclick="window.location.href='home'">Home</button>
+            <button height="45px" onclick="window.location.href='profile'">Profile</button>
+            <button height="45px" onclick="window.location.href='course_reg'">Course Registration</a></button>
+            <button height="45px" onclick="window.location.href='feedback'">Feedback</a></button>
+            <button height="45px" onclick="window.location.href='exam'">Examination</a></button>
+            <button height="45px" onclick="window.location.href='calendar'">Calendar</a></button>
+            <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</a></button>
+            <button height="45px" onclick="window.location.href='#'">Hostel</a></button>
+            <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
+        </div>
+
+        <div class="middle-div">
+            <!-- Add an invisible placeholder for the notification -->
+            <div id="notification" style="display: none; position: absolute; top: 20px; right: 20px; background-color: white; border: 1px solid #ccc; border-radius: 8px; padding: 10px;">
+                <p id="notificationMessage" style="font-weight: bold;"></p>
+                <p id="contactInfo"></p>
+                <center><button onclick="hideNotification()">OK</button></center>
+            </div>
+            <h2>Course Related Queries</h2>
+            <div>
+                <div class="silently" onclick="toggleActive(this)">
+                    <button>Silently</button>
+                </div>
+                <div class="public" onclick="toggleActive(this)">
+                    <button>Public</button>
+                </div>
+            </div>
+            <hr> <!-- Added horizontal line -->
+            <div class="course-query">
+                <h3>Course Query </h3>
+                <div class="type-box">
+                    <textarea class="query-box" rows="4" placeholder="Enter your query..."></textarea>
+                </div>
+                <button>Submit</button>
+            </div>
+        </div>
+
+        <div class="right-corner-div">
+            <div>
+                <a href="Classes.html" style="height: 200px; background-color: #D3D9D9;">
+                    <h3 style="font-weight: bold;">Classes</h3>
+                    <div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 5px; background-color: #ffffff;">
+                        <p>CSET206 DAA Lecture</p>
+                    </div>
+                    <div style="border: 1px solid #ccc; padding: 5px; background-color: #ffffff;">
+                        <p>CSET209 OS Lecture</p>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a onclick="window.location.href='event'" style="height: 140px; background-color: #D3D9D9;">
+                    <h3 style="font-weight: bold;">Events</h3>
+                    <div style="border: 1px solid #ccc; padding: 5px; background-color:#ffffff ">
+                        <p>Hackaccino by CSI BU</p>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a onclick="window.location.href='exam'" style="height: 140px; background-color: #D3D9D9;">
+                    <h3 style="font-weight: bold;">Exam Schedule</h3>
+                    <div style="border: 1px solid #ccc; padding: 5px; background-color: #ffffff;">
+                        <p>No Exams scheduled for this week!</p>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="food.html" style="height: 150px; background-color: #D3D9D9;">
+                    <h3 style="font-weight: bold;">Food</h3>
+                    <div style="border: 1px solid #ccc; padding: 5px; max-height: 80px; overflow: hidden; text-overflow: ellipsis; background-color: #ffffff;">
+                        <p>Lunch: Tomato Basil Soup, Grilled Salmon with Lemon-Dill Sauce, Roasted Garlic Mashed Potatoes, Sautéed Green Beans with Almonds, Decadent Chocolate Lava Cake with Vanilla Ice Cream, Sparkling Cranberry Lemonade</p>
+                    </div>
+                </a>
+            </div>
+        </div>                       
+    </div>
+    <script>
+        function toggleActive(button) {
+            // Get all buttons in the same parent element
+            const buttons = button.parentElement.querySelectorAll('button');
+        }
+        // Function to handle the notification trigger
+        function triggerNotification(enrollment_no) {
+            // Show notification on the home page
+            showNotification("Your lost item has been found, please collect it from the Lost & Found Office", "99999XXXXX");
+        }
+        // Function to show notification
+        function showNotification(message, contactInfo) {
+            // Set the notification message and contact info
+            document.getElementById("notificationMessage").innerText = message;
+            document.getElementById("contactInfo").innerText = "Contact Info: " + contactInfo;
+
+            // Make the notification visible
+            document.getElementById("notification").style.display = "block";
+        }
+
+        // Function to hide notification
+        function hideNotification() {
+            // Hide the notification
+            document.getElementById("notification").style.display = "none";
+        }
+        // Function to handle the HTTP request for triggering notification
+        function notifyLostItemFound(enrollment_no) {
+            // Send AJAX request to trigger notification
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/notify", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.status == 200) {
+                        console.log("Notification triggered successfully.");
+                    } else {
+                        console.error("Failed to trigger notification.");
+                    }
+                }
+            };
+            xhr.send("enrollment_no=" + enrollment_no);
+        }//triggerNotification()
+    </script>
+</body>
+</html>

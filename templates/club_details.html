@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+        }
+        .container1 {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #ccc;
+            margin-bottom: 10px;
+        }
+        .text-placeholder {
+            margin-bottom: 10px;
+        }
+        .view-details-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .div3{
+            display: flex;
+            justify-content: space-evenly;
+            height: 100%;
+            align-content: stretch;
+        }
+        .div1{
+            width: 45%;
+            border:outset;
+            padding: 5px;
+        }
+        .div2{
+            width: 45%;
+            border: outset;
+            padding: 5px;
+        }
+        .container {
+            display: inline-block;
+            width: 99.5%;
+            height:100%;
+            padding: 5px;
+            margin: 5px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.932);
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px; /* Add margin to separate logo and text */
+        }
+
+        .easecase-text {
+            font-size: 35px;
+            font-weight: bold;
+            color: #932A2A;
+        }
+
+
+
+        .vertical-div {
+            width: 200px;
+            background-color: #932A2A;
+            padding: 8px;
+        }
+
+
+
+
+
+        /* Added styles for left-corner div buttons */
+        .vertical-div button {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 100%;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Added styles for course query */
+
+
+        /* Added styles for the type box */
+
+
+        /* Circular image */
+        .circular-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Added styles for the horizontal line */
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .vertical-div, .middle-div, .right-corner-div {
+                width: 100%;
+            }
+            .vertical-div {
+                padding: 10px;
+            }
+        }
+
+        /* Additional styles for club details */
+        .container {
+            padding: 20px; /* Add padding for spacing */
+            position: relative; /* Set container to relative position */
+            background-image: url('{{ club_info['club_logo'] }}'); /* Set background image */
+            background-size: cover; /* Adjust background image size */
+            background-position: center; /* Adjust background image position */
+        }
+
+        .club-details {
+            margin-top: 20px; /* Add margin for spacing */
+            background-color: rgba(255, 255, 255, 0.9); /* Add background color for readability */
+            padding: 20px; /* Add padding for readability */
+            border-radius: 8px; /* Add border radius for styling */
+        }
+
+        .club-role {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px; /* Add margin for spacing */
+        }
+
+        .member-details {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Add margin for spacing */
+        }
+
+        .member-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px; /* Add margin for spacing */
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            flex-grow: 1; /* Grow to fill remaining space */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <img src="/static/img/final_logo.png" alt="College Logo" class="logo">
+            <span class="easecase-text">EASECAMPUS</span>
+        </div>
+    </div>
+
+    <div class="container" style="display: flex;">
+
+        <div class="vertical-div">
+            <center>
+                <div class="circular-image">
+                    <img src={{ user['picture_path'] }} alt="Student Image">
+                </div>
+                <p>{{ user['name'] }}</p>
+                <p>{{ user['enrollment_no'] }}</p>
+                <p>{{ user['school'] }}</p>
+            </center>
+            <button height="45px" onclick="window.location.href='home'">Home</button>
+            <button height="45px" onclick="window.location.href='profile'">Profile</button>
+            <button height="45px" onclick="window.location.href='course_reg'">Course Registration</a></button>
+            <button height="45px" onclick="window.location.href='feedback'">Feedback</a></button>
+            <button height="45px" onclick="window.location.href='#'">Examination</a></button>
+            <button height="45px" onclick="window.location.href='calendar'">Calendar</a></button>
+            <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</a></button>
+            <button height="45px" onclick="window.location.href='#'">Hostel</a></button>
+            <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
+        </div>
+        <div class="container">
+            <!-- Club details -->
+            <div class="club-details">
+                <h1>{{ club_info['club'] }}</h1>
+                <!-- Loop through all club members -->
+                {% for member in club_members %}
+                <div class="club-role">{{ member['role'] }}</div>
+                <!-- Member details -->
+                <div class="member-details">
+                    <div class="member-image">
+                        <img src="{{ member['picture'] }}" alt="Member Image">
+                    </div>
+                    <div class="member-info">
+                        <div>{{ member['name'] }}</div>
+                        <div>{{ member['email'] }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <hr>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve the club name from the query parameter
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const clubName = urlParams.get('club');
+        });
+    </script>
+</body>
+</html>

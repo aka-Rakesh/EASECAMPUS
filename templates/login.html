@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding-right: 130px;
+            background-image: url('/static/img/login.png');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            height: 98vh;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 300px;
+            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, ); /* Semi-transparent white background */
+        }
+
+        .login-box label {
+            margin-bottom: 10px;
+        }
+
+        .login-box input[type="text"],
+        .login-box input[type="password"],
+        .login-box input[type="submit"] {
+            width: 100%;
+            padding: 15px; /* Increased padding for larger input fields */
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensure padding and border are included in width */
+            font-size: 16px; /* Increased font size for input fields */
+        }
+
+        .login-box input[type="submit"] {
+            background-color:#932a2a;
+            color: white;
+            cursor: pointer;
+        }
+
+        .login-box input[type="submit"]:hover {
+            background-color: #bf3535;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <form action="/login" method="post">
+            <h2 for="enrollmentId">Login:</h2>
+            <input type="text" id="enrollmentId" name="email" placeholder="Enter your Email ID"><br>
+            <h2 for="password">Password:</h2>
+            <input type="password" id="password" name="password" placeholder="Enter your password"><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>

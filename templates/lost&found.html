@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+        }
+        .div3{
+            display: flex;
+            justify-content: space-evenly;
+
+            
+            align-content: stretch;
+        }
+        .div1{
+            width: 45%;
+            border: black;
+            padding: 5px;
+        }
+        .div2{
+            width: 45%;
+            border: black;
+            padding: 5px;
+        }
+        .container {
+            display: inline-block;
+            width: 99.5%;
+            height:100%;
+            padding: 5px;
+            margin: 10px;
+            background-color: #D3D9D9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="file"] {
+            display: none; /* Hide the file input */
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .upload-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 8px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding:8px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.932);
+            color: #932A2A;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px; /* Add margin to separate logo and text */
+        }
+
+        .easecase-text {
+            font-size: 35px;
+            font-weight: bold;
+            color: #932A2A;
+        }
+
+
+
+        .vertical-div {
+            width: 200px;
+            background-color: #932A2A;
+            padding: 8px;
+        }
+
+
+
+
+
+        /* Added styles for left-corner div buttons */
+        .vertical-div button {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 100%;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Added styles for course query */
+
+
+        /* Added styles for the type box */
+
+
+        /* Circular image */
+        .circular-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Added styles for the horizontal line */
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .vertical-div, .middle-div, .right-corner-div {
+                width: 100%;
+            }
+            .vertical-div {
+                padding: 10px;
+            }
+            .search-bar {
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="navbar">
+        <div class="logo-container">
+            <img src="/static/img/final_logo.png" alt="College Logo" class="logo">
+            <span class="easecase-text">EASECAMPUS</span>
+        </div>
+    </div>
+
+    <div class="container" style="display: flex;">
+
+        <div class="vertical-div">
+            <center>
+                <div class="circular-image">
+                    <img src={{ user['picture_path'] }} alt="Student Image">
+                </div>
+                <p>{{ user['name'] }}</p>
+                <p>{{ user['enrollment_no'] }}</p>
+                <p>{{ user['school'] }}</p>
+            </center>
+            <button height="45px" onclick="window.location.href='home'">Home</button>
+            <button height="45px" onclick="window.location.href='profile'">Profile</button>
+            <button height="45px" onclick="window.location.href='course_reg'">Course Registration</a></button>
+            <button height="45px" onclick="window.location.href='feedback'">Feedback</a></button>
+            <button height="45px" onclick="window.location.href='#'">Examination</a></button>
+            <button height="45px" onclick="window.location.href='calendar'">Calendar</a></button>
+            <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</a></button>
+            <button height="45px" onclick="window.location.href='#'">Hostel</a></button>
+            <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
+        </div>
+        <div class="container">
+            <div class="div0">
+                <h1>Lost And Found</h1>
+            </div>
+            <div class="div3">
+                <div class="div1">
+                    <h2>Lost Item</h2>
+                <form action={{ url_for('submit_lost_item') }} method="post" enctype="multipart/form-data">
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" id="itemName" name="itemName" required>
+                    
+                    <label for="keywords">Keywords:</label>
+                    <input type="text" id="Keywords" name="Keywords" placeholder="eg: #mobile #motorola #green #case" required>
+
+                    <label for="dateLost">Date when Item lost:</label>
+                    <input type="date" id="dateLost" name="dateLost" required>
+        
+                    <label for="placeLost">Place where lost:</label>
+                    <input type="text" id="placeLost" name="placeLost" required>
+        
+                    <label for="referencePhoto">Any Photo for Reference:</label>
+                    <input type="file" id="referencePhoto" name="referencePhoto">
+                    <label class="upload-btn" for="referencePhoto">Upload Photo</label>
+        
+                    <button type="submit" class="submit-btn">Report</button>
+                </form>
+                </div>
+                <div class="div2">
+                    <h2>Found Item</h2>
+                <form action={{ url_for('submit_found_item') }} method="post" enctype="multipart/form-data">
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" id="itemName" name="itemName" required>
+                    
+                    <label for="keywords">Keywords:</label>
+                    <input type="text" id="Keywords" name="Keywords" placeholder="eg: #mobile #motorola #green #case" required>
+
+                    <label for="dateFound">Date when Item found:</label>
+                    <input type="date" id="dateFound" name="dateFound" required>
+        
+                    <label for="placeFound">Place where found:</label>
+                    <input type="text" id="placeFound" name="placeFound" required>
+        
+                    <label for="referencePhoto">Any Photo for Reference:</label>
+                    <input type="file" id="referencePhoto" name="referencePhoto">
+                    <label class="upload-btn" for="referencePhoto">Upload Photo</label>
+        
+                    <button type="submit" class="submit-btn">Report</button>
+                </form>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
