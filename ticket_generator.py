@@ -8,20 +8,20 @@ def create_tickets_table():
     c.execute('''CREATE TABLE IF NOT EXISTS tickets
                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
                  type TEXT,
-                 student_id INTEGER,
-                 status TEXT,
+                 enrollment_no INTEGER,
+                 status BOOLEAN,
                  details TEXT)''')
     
     conn.commit()
     conn.close()
 
 # Function to generate a new ticket
-def generate_ticket(ticket_type, student_id, details):
+def generate_ticket(ticket_type, enrollment_no, details):
     conn = sqlite3.connect('ticket_generator.db')
     c = conn.cursor()
     
-    c.execute('''INSERT INTO tickets (type, student_id, status, details)
-                 VALUES (?, ?, 'Open', ?)''', (ticket_type, student_id, details))
+    c.execute('''INSERT INTO tickets (type, enrollment_no, status, details)
+                 VALUES (?, ?, 'Open', ?)''', (ticket_type, enrollment_no, details))
     
     conn.commit()
     conn.close()
@@ -38,11 +38,11 @@ def view_tickets():
     return tickets
 
 # Function to view tickets by student ID
-def view_tickets_by_student(student_id):
+def view_tickets_by_student(enrollment_no):
     conn = sqlite3.connect('ticket_generator.db')
     c = conn.cursor()
     
-    c.execute('''SELECT * FROM tickets WHERE student_id=?''', (student_id,))
+    c.execute('''SELECT * FROM tickets WHERE student_id=?''', (enrollment_no,))
     tickets = c.fetchall()
     
     conn.close()

@@ -2,7 +2,7 @@ import sqlite3
 
 # Function to create the database table for club members
 def create_club_members_table():
-    conn = sqlite3.connect('club_details.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''CREATE TABLE IF NOT EXISTS club_members
@@ -11,14 +11,16 @@ def create_club_members_table():
                  role TEXT,
                  picture TEXT,
                  email TEXT,
-                 mobile_no TEXT)''')
+                 mobile_no INTEGER,
+                 club TEXT,
+                 club_logo TEXT)''')
     
     conn.commit()
     conn.close()
 
 # Function to create the database table for events
 def create_events_table():
-    conn = sqlite3.connect('club_details.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''CREATE TABLE IF NOT EXISTS events
@@ -28,25 +30,27 @@ def create_events_table():
                  registration_deadline TEXT,
                  venue TEXT,
                  prize TEXT,
-                 info TEXT)''')
+                 info TEXT,
+                 club TEXT)''')
     
     conn.commit()
     conn.close()
 
 # Function to add a new club member
-def add_club_member(name, role, picture, email, mobile_no):
-    conn = sqlite3.connect('club_details.db')
+def add_club_member(input):
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
+    (name, role, picture, email, mobile_no, club, club_logo) = input.split(',')
     
-    c.execute('''INSERT INTO club_members (name, role, picture, email, mobile_no)
-                 VALUES (?, ?, ?, ?, ?)''', (name, role, picture, email, mobile_no))
+    c.execute('''INSERT INTO club_members (name, role, picture, email, mobile_no, club, club_logo)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)''', (name, role, picture, email, mobile_no, club, club_logo))
     
     conn.commit()
     conn.close()
 
 # Function to edit club member details
-def edit_club_member(member_id, name=None, role=None, picture=None, email=None, mobile_no=None):
-    conn = sqlite3.connect('club_details.db')
+def edit_club_member(member_id, name=None, role=None, picture=None, email=None, mobile_no=None, club=None, club_logo=None):
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     update_query = '''UPDATE club_members SET'''
@@ -67,6 +71,12 @@ def edit_club_member(member_id, name=None, role=None, picture=None, email=None, 
     if mobile_no:
         update_query += ''' mobile_no=?, '''
         update_values.append(mobile_no)
+    if club:
+        update_query += ''' club=?, '''
+        update_values.append(club)
+    if club_logo:
+        update_query += ''' club_logo=?, '''
+        update_values.append(club_logo)
 
     # Remove the last comma and space
     update_query = update_query[:-2]
@@ -80,19 +90,20 @@ def edit_club_member(member_id, name=None, role=None, picture=None, email=None, 
     conn.close()
 
 # Function to create a new event
-def create_event(date, time, registration_deadline, venue, prize, info):
-    conn = sqlite3.connect('club_details.db')
+def create_event(input):
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
+    (date, time, registration_deadline, venue, prize, info, club) = input.split(',')
     
-    c.execute('''INSERT INTO events (date, time, registration_deadline, venue, prize, info)
-                 VALUES (?, ?, ?, ?, ?, ?)''', (date, time, registration_deadline, venue, prize, info))
+    c.execute('''INSERT INTO events (date, time, registration_deadline, venue, prize, info, club)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)''', (date, time, registration_deadline, venue, prize, info, club))
     
     conn.commit()
     conn.close()
 
 # Function to edit an existing event
-def edit_event(event_id, date=None, time=None, registration_deadline=None, venue=None, prize=None, info=None):
-    conn = sqlite3.connect('club_details.db')
+def edit_event(event_id, date=None, time=None, registration_deadline=None, venue=None, prize=None, info=None, club=None):
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     update_query = '''UPDATE events SET'''
@@ -116,6 +127,9 @@ def edit_event(event_id, date=None, time=None, registration_deadline=None, venue
     if info:
         update_query += ''' info=?, '''
         update_values.append(info)
+    if club:
+        update_query += ''' club=?, '''
+        update_values.append(club)
 
     # Remove the last comma and space
     update_query = update_query[:-2]
@@ -130,7 +144,7 @@ def edit_event(event_id, date=None, time=None, registration_deadline=None, venue
 
 # Function to view registrations for an event
 def view_event_registrations(event_id):
-    conn = sqlite3.connect('club_details.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''SELECT * FROM events WHERE id=?''', (event_id,))
@@ -140,22 +154,22 @@ def view_event_registrations(event_id):
     return event
 
 # Function to view all club members
-def view_club_members():
-    conn = sqlite3.connect('club_details.db')
+def view_club_members(club):
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
-    c.execute('''SELECT * FROM club_members''')
+    c.execute('''SELECT * FROM club_members WHERE club = ?''', (club,))
     members = c.fetchall()
     
     conn.close()
     return members
 
 # Function to view all upcoming events
-def view_upcoming_events():
-    conn = sqlite3.connect('club_details.db')
+def view_upcoming_events(club):
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
-    c.execute('''SELECT * FROM events''')
+    c.execute('''SELECT * FROM events WHERE club = ?''', (club,))
     events = c.fetchall()
     
     conn.close()
@@ -167,5 +181,7 @@ def register_for_event(name, enrollment_no, mobile_no, email, additional_info):
     pass
 
 if __name__ == '__main__':
-    create_club_members_table()
-    create_events_table()
+    #create_club_members_table()
+    #create_events_table()
+    #add_club_member(input())
+    create_event(input())

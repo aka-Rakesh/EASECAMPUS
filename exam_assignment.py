@@ -25,7 +25,7 @@ def create_assignment_table():
                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
                  subject TEXT,
                  batch TEXT,
-                 group TEXT,
+                 group_no TEXT,
                  start_date TEXT,
                  start_time TEXT,
                  end_date TEXT,
