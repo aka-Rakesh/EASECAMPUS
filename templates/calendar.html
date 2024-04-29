@@ -153,6 +153,7 @@
 <body>
     <div class="navbar">
         <div class="logo-container">
+            <!-- Your logo and text here -->
             <img src="/static/img/final_logo.png" alt="College Logo" class="logo">
             <span class="easecase-text">EASECAMPUS</span>
         </div>
@@ -161,6 +162,7 @@
     <div class="container" style="display: flex;">
 
         <div class="vertical-div">
+            <!-- Your sidebar buttons here -->
             <center>
                 <div class="circular-image">
                     <img src={{ user['picture_path'] }} alt="Student Image">
@@ -181,9 +183,21 @@
             <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
             <button height="45px" onclick="window.location.href='logout'">Logout</a></button>
         </div>
+
         <div class="container-head">
             <h1>Calendar</h1>
             <table id="calendar"></table>
+            <!-- Add reminder buttons -->
+            <div style="margin-top: 20px;">
+                <button onclick="setReminder()">Set Reminder</button>
+                <button onclick="editReminder()">Edit Reminder</button>
+            </div>
+            <!-- Display classes -->
+            <div style="margin-top: 20px;">
+                <h2>Classes</h2>
+                <p>Design Thinking & Innovation (CSET210) - 01:30 pm - 03:25 pm - P-101-LA</p>
+                <!-- Add more class entries here -->
+            </div>
         </div>
 
     </div>
@@ -237,6 +251,16 @@
                 }
             }
         });
+
+        // Function to handle set reminder button click
+        function setReminder() {
+            // Add your logic here
+        }
+
+        // Function to handle edit reminder button click
+        function editReminder() {
+            // Add your logic here
+        }
     </script>
 
 </body>

@@ -31,7 +31,8 @@ def create_events_table():
                  venue TEXT,
                  prize TEXT,
                  info TEXT,
-                 club TEXT)''')
+                 club TEXT,
+                 link TEXT)''')
     
     conn.commit()
     conn.close()
@@ -181,7 +182,7 @@ def register_for_event(name, enrollment_no, mobile_no, email, additional_info):
     pass
 
 if __name__ == '__main__':
-    #create_club_members_table()
-    #create_events_table()
+    create_club_members_table()
+    create_events_table()
     #add_club_member(input())
-    create_event(input())
+    #create_event(input())
