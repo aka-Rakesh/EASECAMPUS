@@ -46,10 +46,8 @@ def trigger_notification(enrollment_no):
     response = requests.post('http://localhost:5000/notify', data={'enrollment_no': enrollment_no})
     if response.status_code == 200:
         print("Notification triggered successfully.")
-        return True
     else:
         print("Failed to trigger notification.")
-        return False
 
 if __name__ == '__main__':
     scheduler = BackgroundScheduler()

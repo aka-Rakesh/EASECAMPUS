@@ -46,7 +46,10 @@ def login_submit():
             session['enrollment_no'] = user['enrollment_no']
             conn.close()
             # Redirect to the home page
-            return redirect(url_for('home'))
+            if session['email']=="e22cseu0830@bennett.edu.in":
+                return redirect(url_for('home_'))
+            else:    
+                return redirect(url_for('home'))
         else:
             # If the password is incorrect, show an error message
             return 'Invalid email or password. Please try again.'
@@ -74,6 +77,22 @@ def home():
         conn.close()
         # If email is stored in the session, render the home page with the email
         return render_template('home.html', user=user)
+    else:
+        # If email is not stored in the session, redirect to the login page
+        return redirect(url_for('login'))
+
+# Route for the home page
+@app.route('/home_')
+def home_():
+    email = session.get('email')
+    if email:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM students WHERE email = ?', (email,))
+        user = cursor.fetchone()
+        conn.close()
+        # If email is stored in the session, render the home page with the email
+        return render_template('home_.html', user=user)
     else:
         # If email is not stored in the session, redirect to the login page
         return redirect(url_for('login'))
@@ -118,6 +137,19 @@ def feedback():
             return render_template('feedback.html', user=user)
     return 'User not found.'
 
+@app.route('/class')
+def classes():
+    email = session.get('email')
+    if email:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM students WHERE email = ?', (email,))
+        user = cursor.fetchone()
+        conn.close()
+        if user:
+            return render_template('class.html', user=user)
+    return 'User not found.'
+
 @app.route('/event')
 def event():
     email = session.get('email')
@@ -142,6 +174,19 @@ def exam():
         conn.close()
         if user:
             return render_template('exam.html', user=user)
+    return 'User not found.'
+
+@app.route('/food')
+def food():
+    email = session.get('email')
+    if email:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM students WHERE email = ?', (email,))
+        user = cursor.fetchone()
+        conn.close()
+        if user:
+            return render_template('food.html', user=user)
     return 'User not found.'
 
 @app.route('/assignment')
