@@ -10,26 +10,23 @@
             margin: 0;
             padding: 0;
         }
-
-        
         .middle-container{
             width: 100%;
+            justify-items: center;
         }
         .search-bar {
             text-align: center;
+            margin-top: 10px;
             margin-bottom: 10px;
         }
         .table-container {
             max-width: 1000px;
             height: 600px;
             margin: auto;
-            background-color: #FF7979;
-            border-radius: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-        }
-        .Course-Cart{
-            margin-left: 20px;
         }
         table {
             width: 100%;
@@ -43,6 +40,9 @@
         th {
             background-color: #f0f0f0;
         }
+
+        
+        
         .container1 {
             max-width: 400px;
             margin: 0 auto;
@@ -62,7 +62,7 @@
         }
         .view-details-btn {
             background-color: #007bff;
-            color: #ffffff;
+            color: #932A2A;
             border: none;
             padding: 8px 12px;
             border-radius: 4px;
@@ -88,16 +88,14 @@
             display: inline-block;
             width: 99.5%;
             height:100%;
-            padding: 5px;
-            margin: 5px;
-            background-color: #ffffff;
+            background-color: #D3D9D9;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .navbar {
             background-color: rgba(0, 0, 0, 0.932);
-            color: #fff;
+            color: #932A2A;
             padding: 15px;
             display: flex;
             justify-content: space-between;
@@ -125,7 +123,7 @@
 
         .vertical-div {
             width: 200px;
-            background-color: #f0f0f0;
+            background-color: #932A2A;
             padding: 8px;
         }
 
@@ -151,7 +149,7 @@
 
 
         .active {
-            background-color: #4CAF50;
+            background-color: #D3D9D9;
             color: white;
         }
 
@@ -217,15 +215,17 @@
             <button height="45px" onclick="window.location.href='profile'">Profile</button>
             <button height="45px" onclick="window.location.href='course_reg'">Course Registration</a></button>
             <button height="45px" onclick="window.location.href='feedback'">Feedback</a></button>
-            <button height="45px" onclick="window.location.href='#'">Examination</a></button>
+            <button height="45px" onclick="window.location.href='exam'">Examination</a></button>
+            <button height="45px" onclick="window.location.href='assignment'">Assignments</a></button>
             <button height="45px" onclick="window.location.href='calendar'">Calendar</a></button>
             <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</a></button>
             <button height="45px" onclick="window.location.href='#'">Hostel</a></button>
             <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
+            <button height="45px" onclick="window.location.href='logout'">Logout</a></button>
         </div>
         <div class="middle-container">
             <div class="table-container">
-                <div class="Course-Cart">
+                <div class="Course-Cart" style="padding-left:10px">
                     <h1>Course Cart</h1>
                 </div>
                 <table>
@@ -234,7 +234,41 @@
                         <th>Enrollment Type</th>
                         <th>Credits</th>
                     </tr>
-                    
+                    <tr>
+                        <td>CSET 206 - Design and Analysis of Algorithms</td>
+                        <td>Core</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>CSET 207 - Computer Networks</td>
+                        <td>Core</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>CSET 208 - Ethics for Engineers, Patents, Copyrights and IPR</td>
+                        <td>Core</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>CSET 209 - Operating Systems</td>
+                        <td>Core</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>CSET 210 - Design Thinking & Innovation</td>
+                        <td>Core</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>CSET 226 - Blockchain Engineering</td>
+                        <td>Specialized Core</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>CSET 389 - Linux Apache MySQL PHP (LAMP)</td>
+                        <td>Open Elective</td>
+                        <td>3</td>
+                    </tr>
                 </table>
             </div>
         </div>

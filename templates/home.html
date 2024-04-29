@@ -199,10 +199,12 @@
             <button height="45px" onclick="window.location.href='course_reg'">Course Registration</a></button>
             <button height="45px" onclick="window.location.href='feedback'">Feedback</a></button>
             <button height="45px" onclick="window.location.href='exam'">Examination</a></button>
+            <button height="45px" onclick="window.location.href='assignment'">Assignments</a></button>
             <button height="45px" onclick="window.location.href='calendar'">Calendar</a></button>
             <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</a></button>
             <button height="45px" onclick="window.location.href='#'">Hostel</a></button>
             <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
+            <button height="45px" onclick="window.location.href='logout'">Logout</a></button>
         </div>
 
         <div class="middle-div">
@@ -277,40 +279,48 @@
         // Function to handle the notification trigger
         function triggerNotification(enrollment_no) {
             // Show notification on the home page
-            showNotification("Your lost item has been found, please collect it from the Lost & Found Office", "99999XXXXX");
+            showNotification("Your lost item has been found, please collect it from the Lost & Found Office", "Contact Info: 99999XXXXX", enrollment_no);
         }
         // Function to show notification
-        function showNotification(message, contactInfo) {
+        function showNotification(message, contactInfo, enrollment_no) {
             // Set the notification message and contact info
             document.getElementById("notificationMessage").innerText = message;
-            document.getElementById("contactInfo").innerText = "Contact Info: " + contactInfo;
+            document.getElementById("contactInfo").innerText = contactInfo;
+
+            // Set the enrollment_no in a hidden field
+            document.getElementById("enrollmentNo").value = enrollment_no;
 
             // Make the notification visible
             document.getElementById("notification").style.display = "block";
         }
-
         // Function to hide notification
         function hideNotification() {
             // Hide the notification
             document.getElementById("notification").style.display = "none";
         }
-        // Function to handle the HTTP request for triggering notification
-        function notifyLostItemFound(enrollment_no) {
-            // Send AJAX request to trigger notification
+        // Function to poll the server for notification trigger
+        function pollForNotification() {
+            // Make an AJAX request to check if notification needs to be triggered
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/notify", true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     if (xhr.status == 200) {
-                        console.log("Notification triggered successfully.");
-                    } else {
-                        console.error("Failed to trigger notification.");
+                        var response = JSON.parse(xhr.responseText);
+                        // If trigger is true, call triggerNotification with enrollment_no
+                        if (response.trigger) {
+                            triggerNotification(response.enrollment_no);
+                        }
                     }
                 }
             };
+            // Send enrollment_no along with the request
             xhr.send("enrollment_no=" + enrollment_no);
-        }//triggerNotification()
+        }
+        // Poll for notification every 1 min
+        setInterval(pollForNotification, 60000);
+        // triggerNotification()
     </script>
 </body>
 </html>

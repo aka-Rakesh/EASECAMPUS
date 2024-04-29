@@ -39,17 +39,17 @@ def scan_for_lost_items():
     conn.close()
     print("Scan completed.")
 
-# Function to send HTTP request to trigger notification
+# Function to trigger notification
 def trigger_notification(enrollment_no):
     print(f"Notification sent to enrollment number: {enrollment_no}")
     # Send POST request to localhost:5000/notify with enrollment number as data
     response = requests.post('http://localhost:5000/notify', data={'enrollment_no': enrollment_no})
     if response.status_code == 200:
         print("Notification triggered successfully.")
-        # Call the triggerNotification function in home.html
-        #triggerNotification(enrollment_no)
+        return True
     else:
         print("Failed to trigger notification.")
+        return False
 
 if __name__ == '__main__':
     scheduler = BackgroundScheduler()

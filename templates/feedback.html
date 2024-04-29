@@ -16,6 +16,7 @@
         }
         .search-bar {
             text-align: center;
+            margin-top: 10px;
             margin-bottom: 10px;
         }
         .table-container {
@@ -61,7 +62,7 @@
         }
         .view-details-btn {
             background-color: #007bff;
-            color: #ffffff;
+            color: #932A2A;
             border: none;
             padding: 8px 12px;
             border-radius: 4px;
@@ -87,16 +88,14 @@
             display: inline-block;
             width: 99.5%;
             height:100%;
-            padding: 5px;
-            margin: 5px;
-            background-color: #ffffff;
+            background-color: #D3D9D9;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .navbar {
             background-color: rgba(0, 0, 0, 0.932);
-            color: #fff;
+            color: #932A2A;
             padding: 15px;
             display: flex;
             justify-content: space-between;
@@ -124,7 +123,7 @@
 
         .vertical-div {
             width: 200px;
-            background-color: #f0f0f0;
+            background-color: #932A2A;
             padding: 8px;
         }
 
@@ -150,7 +149,7 @@
 
 
         .active {
-            background-color: #4CAF50;
+            background-color: #D3D9D9;
             color: white;
         }
 
@@ -202,41 +201,72 @@
     </div>
 
     <div class="container" style="display: flex;">
-
         <div class="vertical-div">
             <center>
+                <!-- Placeholder for student image -->
                 <div class="circular-image">
-                    <img src={{ user['picture_path'] }} alt="Student Image">
+                    <img src="{{ user['picture_path'] }}" alt="Student Image">
                 </div>
+                <!-- Placeholder for student details -->
                 <p>{{ user['name'] }}</p>
                 <p>{{ user['enrollment_no'] }}</p>
                 <p>{{ user['school'] }}</p>
             </center>
+            <!-- Navigation buttons -->
             <button height="45px" onclick="window.location.href='home'">Home</button>
             <button height="45px" onclick="window.location.href='profile'">Profile</button>
-            <button height="45px" onclick="window.location.href='course_reg'">Course Registration</a></button>
-            <button height="45px" onclick="window.location.href='feedback'">Feedback</a></button>
-            <button height="45px" onclick="window.location.href='#'">Examination</a></button>
-            <button height="45px" onclick="window.location.href='calendar'">Calendar</a></button>
-            <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</a></button>
-            <button height="45px" onclick="window.location.href='#'">Hostel</a></button>
-            <button height="45px" onclick="window.location.href='club'">Club Details</a></button>
+            <button height="45px" onclick="window.location.href='course_reg'">Course Registration</button>
+            <button height="45px" onclick="window.location.href='feedback'">Feedback</button>
+            <button height="45px" onclick="window.location.href='exam'">Examination</button>
+            <button height="45px" onclick="window.location.href='assignment'">Assignments</a></button>
+            <button height="45px" onclick="window.location.href='calendar'">Calendar</button>
+            <button height="45px" onclick="window.location.href='ticket_gen'">Ticket Generator</button>
+            <button height="45px" onclick="window.location.href='#'">Hostel</button>
+            <button height="45px" onclick="window.location.href='club'">Club Details</button>
+            <button height="45px" onclick="window.location.href='logout'">Logout</a></button>
         </div>
         <div class="middle-container">
             <div class="table-container">
                 <div class="search-bar">
-                    <input type="text" placeholder="Search by Feedback">
+                    <input type="text" id="feedback-search" placeholder="Search by Feedback">
                 </div>
-                <table>
+                <table id="feedback-table">
                     <tr>
                         <th>Feedback Name</th>
                         <th>Term</th>
                         <th>Status</th>
                     </tr>
-                    
+                    <!-- Hardcoded feedback data -->
+                    <tr>
+                        <td>Attending Bennett University has been an enriching experience. The faculty's dedication to fostering critical thinking and the plethora of extracurricular activities available have truly enhanced my learning journey.</td>
+                        <td>IV</td>
+                        <td>ONGOING</td>
+                    </tr>
+                    <tr>
+                        <td>I'm impressed by the modern facilities and resources at Bennett University. From well-equipped labs to comprehensive libraries, the environment here truly supports academic excellence.</td>
+                        <td>IV</td>
+                        <td>ONGOING</td>
+                    </tr>
+                    <tr>
+                        <td>Bennett University stands out for its emphasis on practical learning. The hands-on projects and industry collaborations have provided me with valuable real-world skills that will undoubtedly benefit my future career.</td>
+                        <td>IV</td>
+                        <td>ONGOING</td>
+                    </tr>
+                    <tr>
+                        <td>The supportive and engaging community at Bennett University has made my time here unforgettable. The diverse student body and numerous clubs and societies have helped me grow both personally and professionally.</td>
+                        <td>IV</td>
+                        <td>ONGOING</td>
+                    </tr>
+                    <tr>
+                        <td>I appreciate the holistic approach to education at Bennett University. The emphasis on innovation and entrepreneurship has empowered me to think creatively and pursue my passions with confidence.</td>
+                        <td>IV</td>
+                        <td>ONGOING</td>
+                    </tr>
                 </table>
             </div>
         </div>
+    </div>
+
+    <!-- Your JavaScript code here -->
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify 
 import sqlite3
 import hashlib
 import os
@@ -53,6 +53,14 @@ def login_submit():
     else:
         # If the user does not exist, show an error message
         return 'User does not exist. Please try again.'
+
+# Route for logging out
+@app.route('/logout')
+def logout():
+    # Clear the session
+    session.clear()
+    # Redirect to the login page
+    return redirect(url_for('login'))
 
 # Route for the home page
 @app.route('/home')
@@ -134,6 +142,19 @@ def exam():
         conn.close()
         if user:
             return render_template('exam.html', user=user)
+    return 'User not found.'
+
+@app.route('/assignment')
+def assignment():
+    email = session.get('email')
+    if email:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM students WHERE email = ?', (email,))
+        user = cursor.fetchone()
+        conn.close()
+        if user:
+            return render_template('assignment.html', user=user)
     return 'User not found.'
 
 @app.route('/calendar')
@@ -294,9 +315,18 @@ def submit_found_item():
 
 @app.route('/notify', methods=['POST'])
 def notify():
-    enrollment_no = request.form['enrollment_no']
-    # Implement notification mechanism here
-    return 'Notification received successfully'
+    # Retrieve enrollment_no from the POST request data
+    enrollment_no = request.form.get('enrollment_no')
+    #print(enrollment_no)
+    #print(session.get('enrollment_no'))
+
+    # Check if the enrollment_no matches the one in session
+    #if session.get('enrollment_no')==enrollment_no:
+    # Return "trigger" along with the enrollment_no
+    return jsonify({'trigger': True, 'enrollment_no': enrollment_no})
+    #else:
+    # If enrollment_no doesn't match or not in session, return an empty response
+    #return '', 204  # Return empty response with status code 204 (No Content)
 
 if __name__ == '__main__':
     app.run(debug=True)

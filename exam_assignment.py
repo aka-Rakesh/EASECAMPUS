@@ -2,7 +2,7 @@ import sqlite3
 
 # Function to create the database table for exams
 def create_exam_table():
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''CREATE TABLE IF NOT EXISTS exams
@@ -18,7 +18,7 @@ def create_exam_table():
 
 # Function to create the database table for assignments
 def create_assignment_table():
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''CREATE TABLE IF NOT EXISTS assignments
@@ -38,7 +38,7 @@ def create_assignment_table():
 
 # Function to add a new exam
 def add_exam(subject, venue, duration, date, syllabus):
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''INSERT INTO exams (subject, venue, duration, date, syllabus)
@@ -49,7 +49,7 @@ def add_exam(subject, venue, duration, date, syllabus):
 
 # Function to add a new assignment
 def add_assignment(subject, batch, group, start_date, start_time, end_date, deadline, filetype, file_info):
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''INSERT INTO assignments (subject, batch, group, start_date, start_time, end_date, deadline, filetype, file_info)
@@ -60,7 +60,7 @@ def add_assignment(subject, batch, group, start_date, start_time, end_date, dead
 
 # Function to update exam information
 def update_exam(exam_id, subject=None, venue=None, duration=None, date=None, syllabus=None):
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     update_query = '''UPDATE exams SET'''
@@ -95,7 +95,7 @@ def update_exam(exam_id, subject=None, venue=None, duration=None, date=None, syl
 
 # Function to update assignment information
 def update_assignment(assignment_id, subject=None, batch=None, group=None, start_date=None, start_time=None, end_date=None, deadline=None, filetype=None, file_info=None):
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     update_query = '''UPDATE assignments SET'''
@@ -142,7 +142,7 @@ def update_assignment(assignment_id, subject=None, batch=None, group=None, start
 
 # Function to view all submissions for an assignment
 def view_assignment_submissions(assignment_id):
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''SELECT * FROM assignments WHERE id=?''', (assignment_id,))
@@ -153,7 +153,7 @@ def view_assignment_submissions(assignment_id):
 
 # Function to mark assignments
 def mark_assignment(assignment_id, marks):
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''UPDATE assignments SET marks=?
@@ -164,7 +164,7 @@ def mark_assignment(assignment_id, marks):
 
 # Function to push marks for exams
 def push_exam_marks(exam_id, student_id, marks):
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''UPDATE exams SET marks=?
@@ -175,7 +175,7 @@ def push_exam_marks(exam_id, student_id, marks):
 
 # Function to view existing exam info
 def view_exam_info():
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''SELECT * FROM exams''')
@@ -186,7 +186,7 @@ def view_exam_info():
 
 # Function to view existing assignment info
 def view_assignment_info():
-    conn = sqlite3.connect('exam_assignment.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''SELECT * FROM assignments''')

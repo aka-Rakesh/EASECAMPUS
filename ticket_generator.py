@@ -2,7 +2,7 @@ import sqlite3
 
 # Function to create the database table for tickets
 def create_tickets_table():
-    conn = sqlite3.connect('ticket_generator.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''CREATE TABLE IF NOT EXISTS tickets
@@ -17,7 +17,7 @@ def create_tickets_table():
 
 # Function to generate a new ticket
 def generate_ticket(ticket_type, enrollment_no, details):
-    conn = sqlite3.connect('ticket_generator.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''INSERT INTO tickets (type, enrollment_no, status, details)
@@ -28,7 +28,7 @@ def generate_ticket(ticket_type, enrollment_no, details):
 
 # Function to view all tickets
 def view_tickets():
-    conn = sqlite3.connect('ticket_generator.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''SELECT * FROM tickets''')
@@ -39,7 +39,7 @@ def view_tickets():
 
 # Function to view tickets by student ID
 def view_tickets_by_student(enrollment_no):
-    conn = sqlite3.connect('ticket_generator.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''SELECT * FROM tickets WHERE student_id=?''', (enrollment_no,))
@@ -50,7 +50,7 @@ def view_tickets_by_student(enrollment_no):
 
 # Function to update ticket status
 def update_ticket_status(ticket_id, status):
-    conn = sqlite3.connect('ticket_generator.db')
+    conn = sqlite3.connect('easecampus.db')
     c = conn.cursor()
     
     c.execute('''UPDATE tickets SET status=?
